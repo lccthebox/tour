@@ -559,15 +559,15 @@ body.en .cta-title{ font-size:clamp(30px,4.5vw,56px); font-family:'Inter',sans-s
 }
 </style>
 </head>
-<body class="ko">
+<body class="en">
 
 <!-- NAV -->
 <nav>
   <div class="nav-brand">The<span>Box</span></div>
   <div class="nav-sub">Spring Picnic · Yecheon 2025</div>
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('ko')">KO</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ko')">KO</button>
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
   </div>
 </nav>
 
@@ -1185,18 +1185,39 @@ function setLang(lang) {
 }
 
 // Capacity — 신청 수 여기서 수정
-const TOTAL = 40, FILLED = 0;
-document.getElementById('fill-n').textContent = FILLED;
-document.getElementById('rem-n').textContent  = TOTAL - FILLED;
-document.getElementById('cap-pct').textContent = `${FILLED} / ${TOTAL}`;
-setTimeout(() => { document.getElementById('cap-bar').style.width = (FILLED/TOTAL*100) + '%'; }, 500);
+const TOTAL = 40;
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2Z475arF1N9cTATrG49Dw86qAdakFgdd13kFFk-cxC5tKqGJi2FIKMnlrHeaaPqhLSA/exec';
 
-const sw = document.getElementById('seat-dots');
-for (let i = 0; i < TOTAL; i++) {
-  const d = document.createElement('div');
-  d.className = 'cdot ' + (i < FILLED ? 'on' : 'off');
-  sw.appendChild(d);
+// 시트에서 신청자 수 실시간 로드
+async function loadCapacity() {
+  try {
+    const res = await fetch(SCRIPT_URL);
+    const data = await res.json();
+    const filled = Math.min(data.filled || 0, TOTAL);
+    updateCapacity(filled);
+  } catch (e) {
+    updateCapacity(0);
+  }
 }
+
+function updateCapacity(filled) {
+  document.getElementById('fill-n').textContent = filled;
+  document.getElementById('rem-n').textContent  = TOTAL - filled;
+  document.getElementById('cap-pct').textContent = `${filled} / ${TOTAL}`;
+  setTimeout(() => {
+    document.getElementById('cap-bar').style.width = (filled / TOTAL * 100) + '%';
+  }, 300);
+
+  const sw = document.getElementById('seat-dots');
+  sw.innerHTML = '';
+  for (let i = 0; i < TOTAL; i++) {
+    const d = document.createElement('div');
+    d.className = 'cdot ' + (i < filled ? 'on' : 'off');
+    sw.appendChild(d);
+  }
+}
+
+loadCapacity();
 
 // Reveal
 const io = new IntersectionObserver(entries => {
@@ -1275,8 +1296,6 @@ async function submitApply() {
   btn.disabled = true;
   btn.textContent = ko ? '제출 중...' : 'Submitting...';
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2Z475arF1N9cTATrG49Dw86qAdakFgdd13kFFk-cxC5tKqGJi2FIKMnlrHeaaPqhLSA/exec';
-
   const payload = {
     name:        document.getElementById('f-name').value.trim(),
     lastName:    document.getElementById('f-lastName').value.trim(),
@@ -1304,6 +1323,8 @@ async function submitApply() {
     // 폼 초기화
     required.forEach(id => { document.getElementById(id).value = ''; });
     closeApply();
+    // 신청자 수 갱신
+    setTimeout(loadCapacity, 1500);
 
   } catch (err) {
     alert(ko ? '오류가 발생했습니다. 다시 시도해 주세요.' : 'Something went wrong. Please try again.');
