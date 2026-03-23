@@ -36,6 +36,9 @@ body{font-family:var(--ko);background:var(--bg);color:var(--ink);overflow-x:hidd
 [data-ko],[data-en]{display:none;}
 body.ko [data-ko]{display:revert;}
 body.en [data-en]{display:revert;}
+li[data-ko], li[data-en] { display: none; }
+body.ko li[data-ko] { display: flex; }
+body.en li[data-en] { display: flex; }
 span[data-ko],span[data-en]{display:none;}
 body.ko span[data-ko]{display:inline;}
 body.en span[data-en]{display:inline;}
@@ -117,9 +120,13 @@ nav{
 }
 .hero-title .sub-line{
   display:block;
-  font-size:clamp(22px,3.5vw,44px);
-  opacity:0.88;
-  letter-spacing:0.04em;
+  font-size:clamp(16px,2.4vw,28px);
+  opacity:0.72;
+  letter-spacing:0.12em;
+  margin-bottom:4px;
+  font-family:var(--en);
+  font-weight:500;
+  text-transform:uppercase;
 }
 .hero-small-line{
   display:block;
@@ -359,10 +366,45 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
 .f-brand span{color:var(--green);}
 .f-info{font-size:11px;color:var(--muted);text-align:right;line-height:2;font-family:var(--en);}
 
-/* DIVIDER */
-hr.hr{border:none;border-top:1px solid var(--border);}
+.price-compare{display:flex;align-items:center;gap:16px;margin:16px 0 20px;flex-wrap:wrap;}
+.price-orig{display:flex;flex-direction:column;gap:2px;}
+.orig-label{font-family:var(--ko);font-size:10px;font-weight:500;letter-spacing:.04em;color:var(--muted);}
+.orig-num{font-family:var(--display);font-size:28px;color:#bbb;text-decoration:line-through;position:relative;}
+.orig-badge{display:inline-block;font-family:var(--en);font-size:10px;font-weight:700;letter-spacing:.08em;background:#f0e8e8;color:#c44;padding:3px 10px;border-radius:100px;margin-top:4px;width:fit-content;}
+.price-arrow{font-size:20px;color:var(--border);margin-top:8px;}
+.price-thebox{display:flex;flex-direction:column;gap:2px;}
+.thebox-label{font-family:var(--en);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green);}
+.thebox-num{font-family:var(--display);font-size:32px;color:var(--green);}
+
+
 
 /* REVEAL */
+/* Menu button */
+.menu-btn{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:transparent;border:1.5px solid var(--green);color:var(--green);font-family:var(--ko);font-size:12px;font-weight:600;padding:6px 14px;border-radius:100px;cursor:pointer;transition:background .18s,color .18s;letter-spacing:.02em;}
+.menu-btn:hover{background:var(--green);color:white;}
+.menu-btn-arrow{font-size:13px;}
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px;}
+.modal-overlay.open{display:flex;}
+.modal{background:white;border-radius:20px;padding:40px 36px;max-width:460px;width:100%;position:relative;animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(12px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-close{position:absolute;top:16px;right:18px;background:none;border:none;cursor:pointer;font-size:22px;color:var(--muted);line-height:1;transition:color .15s;}
+.modal-close:hover{color:var(--ink);}
+.modal-tag{font-family:var(--en);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+.modal-tag::before{content:'';width:16px;height:2px;background:var(--green);}
+.modal-title{font-family:var(--display);font-size:22px;color:var(--ink);margin-bottom:6px;line-height:1.3;}
+.modal-sub{font-size:13px;color:var(--muted);font-weight:300;margin-bottom:24px;}
+.modal-divider{border:none;border-top:1px solid var(--border);margin:16px 0;}
+.menu-group{margin-bottom:22px;}
+.menu-group:last-of-type{margin-bottom:0;}
+.menu-group-label{font-size:10px;font-family:var(--en);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.menu-item{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);}
+.menu-item:last-child{border-bottom:none;}
+.menu-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:5px;}
+.menu-item-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px;letter-spacing:-.01em;}
+.menu-item-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.65;}
+.menu-note{margin-top:18px;font-size:12px;color:var(--muted);line-height:1.85;font-weight:300;padding:12px 14px;background:var(--off);border-radius:10px;}
+
 .rev{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
 .rev.vis{opacity:1;transform:translateY(0);}
 
@@ -412,8 +454,8 @@ hr.hr{border:none;border-top:1px solid var(--border);}
     <div class="hero-left">
       <div class="hero-eyebrow" style="display:none;">TheBox · Spring Tour 2025</div>
       <h1 class="hero-title">
-        <span data-ko><span class="hero-small-line">TheBox</span>봄소풍<br>예천</span>
-        <span data-en><span class="hero-small-line">TheBox</span>Spring Picnic<br>Yecheon</span>
+        <span data-ko><span class="sub-line">2026 봄날,</span>더박스<br>예천 투어</span>
+        <span data-en><span class="sub-line">Spring 2026,</span>TheBox<br>Yecheon Tour</span>
       </h1>
       <div class="hero-tags">
         <span class="htag">Apr 19, 2025</span>
@@ -478,8 +520,8 @@ hr.hr{border:none;border-top:1px solid var(--border);}
         <div>
           <div class="sr-name" data-ko>더현대 대구 출발</div>
           <div class="sr-name" data-en>Depart — The Hyundai Daegu</div>
-          <div class="sr-desc" data-ko>대구 중구 달구벌대로 2077 · 오전 9시 출발</div>
-          <div class="sr-desc" data-en>2077 Dalgubeol-daero, Jung-gu, Daegu · 9:00 AM</div>
+          <div class="sr-desc" data-ko>대구 중구 달구벌대로 2077 · 더박스 멤버 only 버스대절 · 약 1시간 30분 소요</div>
+          <div class="sr-desc" data-en>2077 Dalgubeol-daero, Jung-gu, Daegu · TheBox members only charter bus · Approx. 1.5 hrs</div>
         </div>
       </div>
       <div class="sr">
@@ -487,8 +529,8 @@ hr.hr{border:none;border-top:1px solid var(--border);}
         <div>
           <div class="sr-name" data-ko>회룡포 관광</div>
           <div class="sr-name" data-en>Hoeryongpo</div>
-          <div class="sr-desc" data-ko>출발 후 약 1시간 30분 · 내성천이 350도 휘감아 만든 육지 속 섬마을 · 장안사 전망대 봄 풍경</div>
-          <div class="sr-desc" data-en>~1.5 hrs from Daegu · Village encircled 350° by Naeseong Stream · Spring views from Jangansa Observatory</div>
+          <div class="sr-desc" data-ko>내성천이 350도 휘감아 만든 육지 속 섬마을 · 장안사 전망대 봄 풍경</div>
+          <div class="sr-desc" data-en>Village encircled 350° by Naeseong Stream · Spring views from Jangansa Observatory</div>
         </div>
       </div>
       <div class="sr">
@@ -521,10 +563,15 @@ hr.hr{border:none;border-top:1px solid var(--border);}
       <div class="sr">
         <div class="sr-t" data-ko>점심</div><div class="sr-t" data-en>Lunch</div><div class="sr-line"></div>
         <div>
-          <div class="sr-name" data-ko>윤훈식농가쌈밥</div>
-          <div class="sr-name" data-en>Yunhunshik Farm Ssambap</div>
+          <div class="sr-name" data-ko>점심 : 윤훈식농가쌈밥</div>
+          <div class="sr-name" data-en>Lunch : Yunhunshik Farm Ssambap</div>
           <div class="sr-desc" data-ko>싱싱한 제철 쌈채소로 차린 정갈한 농가 밥상</div>
           <div class="sr-desc" data-en>Wholesome farm meal with fresh seasonal Korean wrap greens</div>
+          <button class="menu-btn" onclick="openMenu()">
+            <span data-ko>메뉴 확인하기</span>
+            <span data-en>View Menu</span>
+            <span class="menu-btn-arrow">↗</span>
+          </button>
         </div>
       </div>
       <div class="sr">
@@ -683,22 +730,39 @@ hr.hr{border:none;border-top:1px solid var(--border);}
         </div>
         <div class="price-tagline" data-ko>1인 단일가 · 전 연령 동일</div>
         <div class="price-tagline" data-en>Per person · All ages same price</div>
+
+        <!-- Original vs TheBox price -->
+        <div class="price-compare">
+          <div class="price-orig">
+            <span class="orig-label" data-ko>동일 상품 타 사이트 판매 정가</span>
+            <span class="orig-label" data-en>Regular price on other sites</span>
+            <span class="orig-num">143,000<span data-ko>원</span><span data-en> KRW</span></span>
+          </div>
+          <div class="price-arrow">→</div>
+          <div class="price-thebox">
+            <span class="thebox-label">TheBox</span>
+            <span class="thebox-num">60,000<span data-ko>원</span><span data-en> KRW</span></span>
+          </div>
+        </div>
+
         <p class="price-copy">
-          <span data-ko>버스 왕복, 딸기 따기 체험, 점심 식사, 가이드 동행이 모두 포함된 가격입니다.</span>
-          <span data-en>Round-trip bus, strawberry picking, lunch, and guide — all included.</span>
+          <span data-ko>동일 상품 타 사이트 143,000원에 판매되던 상품을<br>더박스에서 원가 그대로 60,000원에 다녀옵니다.</span>
+          <span data-en>The same trip sold at 143,000 KRW on other sites.<br>TheBox brings you the same experience at cost — 60,000 KRW.</span>
         </p>
       </div>
       <div>
         <div class="incl-head" data-ko>포함 사항</div>
         <div class="incl-head" data-en>What's Included</div>
         <ul class="incl-list">
-          <li class="incl-row" data-ko><div class="incl-icon">✓</div>버스 왕복</li>
-          <li class="incl-row" data-en><div class="incl-icon">✓</div>Round-trip bus</li>
-          <li class="incl-row" data-ko><div class="incl-icon">✓</div>딸기 따기 체험</li>
-          <li class="incl-row" data-en><div class="incl-icon">✓</div>Strawberry picking</li>
-          <li class="incl-row" data-ko><div class="incl-icon">✓</div>점심 식사</li>
-          <li class="incl-row" data-en><div class="incl-icon">✓</div>Lunch</li>
-          <li class="incl-row" data-ko><div class="incl-icon">✓</div>가이드 동행</li>
+          <li class="incl-row" data-ko><div class="incl-icon">✓</div>차량 (왕복)</li>
+          <li class="incl-row" data-en><div class="incl-icon">✓</div>Round-trip transportation</li>
+          <li class="incl-row" data-ko><div class="incl-icon">✓</div>식사</li>
+          <li class="incl-row" data-en><div class="incl-icon">✓</div>Meal</li>
+          <li class="incl-row" data-ko><div class="incl-icon">✓</div>체험비 (딸기 직접 따서 500g 가져가기)</li>
+          <li class="incl-row" data-en><div class="incl-icon">✓</div>Activity fee (pick &amp; take home 500g strawberries)</li>
+          <li class="incl-row" data-ko><div class="incl-icon">✓</div>여행자 보험</li>
+          <li class="incl-row" data-en><div class="incl-icon">✓</div>Travel insurance</li>
+          <li class="incl-row" data-ko><div class="incl-icon">✓</div>가이드</li>
           <li class="incl-row" data-en><div class="incl-icon">✓</div>Guide</li>
         </ul>
         <div class="price-footnote">
@@ -781,6 +845,65 @@ hr.hr{border:none;border-top:1px solid var(--border);}
   </div>
 </section>
 
+<!-- MENU MODAL -->
+<div class="modal-overlay" id="menuModal" onclick="closeMenuOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeMenu()">×</button>
+
+    <div class="modal-tag">Lunch Menu</div>
+    <h3 class="modal-title" data-ko>윤훈식농가쌈밥</h3>
+    <h3 class="modal-title" data-en>Yunhunshik Farm Ssambap</h3>
+    <p class="modal-sub" data-ko>신청 시 원하시는 메뉴를 선택해 주세요</p>
+    <p class="modal-sub" data-en>Please select your preferred menu when registering</p>
+
+    <div class="modal-divider"></div>
+
+    <div class="menu-group">
+      <div class="menu-group-label" data-ko>🌱 비건 메뉴</div>
+      <div class="menu-group-label" data-en>🌱 Vegan Menu</div>
+      <div class="menu-item">
+        <div class="menu-dot"></div>
+        <div>
+          <div class="menu-item-name" data-ko>장어 쌈밥 정식</div>
+          <div class="menu-item-name" data-en>Eel Ssambap Set</div>
+          <div class="menu-item-desc" data-ko>싱싱한 쌈채소에 장어를 곁들인 정갈한 정식</div>
+          <div class="menu-item-desc" data-en>Fresh wrap greens served with grilled eel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-divider"></div>
+
+    <div class="menu-group">
+      <div class="menu-group-label" data-ko>🥩 Non-비건 메뉴 (택 1)</div>
+      <div class="menu-group-label" data-en>🥩 Non-Vegan Menu (choose 1)</div>
+      <div class="menu-item">
+        <div class="menu-dot"></div>
+        <div>
+          <div class="menu-item-name" data-ko>두루치기</div>
+          <div class="menu-item-name" data-en>Duruchigi</div>
+          <div class="menu-item-desc" data-ko>매콤하게 볶은 돼지고기 두루치기 정식</div>
+          <div class="menu-item-desc" data-en>Spicy stir-fried pork served with wrap greens</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-dot"></div>
+        <div>
+          <div class="menu-item-name" data-ko>소불고기</div>
+          <div class="menu-item-name" data-en>Beef Bulgogi</div>
+          <div class="menu-item-desc" data-ko>달콤하게 양념한 소불고기 정식</div>
+          <div class="menu-item-desc" data-en>Sweet marinated beef bulgogi served with wrap greens</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-note">
+      <span data-ko>🌿 메뉴는 신청 폼에서 선택하실 수 있습니다</span>
+      <span data-en>🌿 You can select your menu in the registration form</span>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="f-brand">The<span>Box</span></div>
   <div class="f-info">
@@ -820,6 +943,19 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.07 });
 document.querySelectorAll('.rev, .sr').forEach(el => io.observe(el));
+
+function openMenu() {
+  document.getElementById('menuModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  document.getElementById('menuModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeMenuOutside(e) {
+  if (e.target === document.getElementById('menuModal')) closeMenu();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
 function handleApply() {
   const ko = document.body.classList.contains('ko');
