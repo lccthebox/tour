@@ -118,6 +118,10 @@ nav{
   text-shadow:0 2px 24px rgba(0,0,0,.3);
   animation:up .8s .06s ease both;
 }
+/* EN일 때 긴 텍스트 대응 */
+body.en .hero-title{
+  font-size:clamp(40px,6.5vw,84px);
+}
 .hero-title .sub-line{
   display:block;
   font-size:clamp(16px,2.4vw,28px);
@@ -380,6 +384,7 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
 
 /* REVEAL */
 /* Menu button */
+.sr-badge{display:inline-block;background:var(--green);color:white;font-size:11px;font-weight:600;padding:2px 10px;border-radius:100px;margin-left:8px;vertical-align:middle;letter-spacing:.02em;}
 .menu-btn{margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:transparent;border:1.5px solid var(--green);color:var(--green);font-family:var(--ko);font-size:12px;font-weight:600;padding:6px 14px;border-radius:100px;cursor:pointer;transition:background .18s,color .18s;letter-spacing:.02em;}
 .menu-btn:hover{background:var(--green);color:white;}
 .menu-btn-arrow{font-size:13px;}
@@ -404,6 +409,37 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
 .menu-item-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px;letter-spacing:-.01em;}
 .menu-item-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.65;}
 .menu-note{margin-top:18px;font-size:12px;color:var(--muted);line-height:1.85;font-weight:300;padding:12px 14px;background:var(--off);border-radius:10px;}
+
+body.en .s-title{ font-size:clamp(20px,3vw,34px); }
+body.en .cta-title{ font-size:clamp(26px,4vw,48px); }
+.bank-box{margin-top:20px;padding:16px 20px;background:var(--sage);border-radius:14px;border:1px solid rgba(42,106,69,.15);}
+.bank-box.dark{background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.15);margin-top:28px;border-radius:16px;padding:20px 24px;text-align:left;max-width:360px;margin-left:auto;margin-right:auto;}
+.bank-label{font-family:var(--en);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.bank-box.dark .bank-label{color:rgba(255,255,255,.6);}
+.bank-name{font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:400;}
+.bank-box.dark .bank-name{color:rgba(255,255,255,.55);}
+.bank-num-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.bank-num{font-family:var(--en);font-size:18px;font-weight:700;color:var(--ink);letter-spacing:.02em;}
+.bank-box.dark .bank-num{color:white;font-size:20px;}
+.bank-box.dark .bank-name{color:rgba(255,255,255,.5);font-size:12px;}.copy-btn{padding:5px 14px;border-radius:100px;border:1.5px solid var(--green);background:transparent;color:var(--green);font-size:11px;font-weight:600;cursor:pointer;transition:background .15s,color .15s;font-family:var(--ko);}
+.copy-btn:hover{background:var(--green);color:white;}
+.copy-btn-light{border-color:rgba(255,255,255,.5);color:white;}
+.copy-btn-light:hover{background:white;color:var(--green2);}
+
+/* Apply modal */
+.modal-wide{max-width:540px;max-height:90svh;overflow-y:auto;}
+.apply-notice{background:#fef9ec;border-left:3px solid var(--green);border-radius:0 10px 10px 0;padding:12px 14px;font-size:12px;color:var(--mid);line-height:1.8;margin-bottom:20px;}
+.form-section-title{font-family:var(--display);font-size:16px;color:var(--ink);margin-bottom:14px;}
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em;}
+.form-hint{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0;}
+.form-input,.form-select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--ko);font-size:14px;color:var(--ink);background:white;outline:none;transition:border .18s;}
+.form-input:focus,.form-select:focus{border-color:var(--green);}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+.form-textarea{height:90px;resize:vertical;line-height:1.6;}
+.form-hint-box{font-size:11px;color:var(--muted);background:var(--off);border-radius:7px;padding:7px 10px;margin-bottom:7px;line-height:1.6;}
+.form-submit{width:100%;padding:15px;background:var(--green);color:white;font-family:var(--display);font-size:16px;border:none;border-radius:12px;cursor:pointer;transition:background .2s;margin-top:4px;}
+.form-submit:hover{background:var(--green2);}
 
 .rev{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
 .rev.vis{opacity:1;transform:translateY(0);}
@@ -511,8 +547,8 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
     <div class="s-label rev" data-ko>당일 일정</div>
     <div class="s-label rev" data-en>Itinerary</div>
     <h2 class="s-title rev">
-      <span data-ko>봄날 하루, 이렇게</span>
-      <span data-en>How We'll Spend the Day</span>
+      <span data-ko>예천에서 하루, 이렇게</span>
+      <span data-en>A Day in Yecheon</span>
     </h2>
     <div class="sched">
       <div class="sr">
@@ -554,10 +590,10 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
       <div class="sr">
         <div class="sr-t" data-ko>오전</div><div class="sr-t" data-en>AM</div><div class="sr-line"></div>
         <div>
-          <div class="sr-name" data-ko>딸기 따기 체험</div>
-          <div class="sr-name" data-en>Strawberry Picking</div>
-          <div class="sr-desc" data-ko>농장에서 직접 따서 먹는 달콤한 봄 체험</div>
-          <div class="sr-desc" data-en>Pick your own fresh strawberries straight from the farm</div>
+          <div class="sr-name" data-ko>딸기 따기 체험 <span class="sr-badge">500g 가져가기</span></div>
+          <div class="sr-name" data-en>Strawberry Picking <span class="sr-badge">Take home 500g</span></div>
+          <div class="sr-desc" data-ko>농장에서 직접 따서 먹고, 500g을 담아 집에 가져갈 수 있어요 🍓</div>
+          <div class="sr-desc" data-en>Pick fresh strawberries at the farm, eat on the spot, and take home 500g 🍓</div>
         </div>
       </div>
       <div class="sr">
@@ -715,10 +751,10 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
 <!-- ════ PRICE ════ -->
 <section class="sec off">
   <div class="inner">
-    <div class="s-label rev" data-ko>참가비</div>
+    <div class="s-label rev" data-ko>참여비</div>
     <div class="s-label rev" data-en>Pricing</div>
     <h2 class="s-title rev">
-      <span data-ko>가격 안내</span>
+      <span data-ko>참여비 안내</span>
       <span data-en>Pricing</span>
     </h2>
     <div class="price-wrap rev">
@@ -768,6 +804,21 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
         <div class="price-footnote">
           <span data-ko>※ 입금 확인 후 신청 완료 &nbsp;·&nbsp; 취소 시 환불 규정 별도 안내</span>
           <span data-en>※ Confirmed upon payment &nbsp;·&nbsp; Cancellation policy announced separately</span>
+        </div>
+
+        <!-- 입금 계좌 -->
+        <div class="bank-box">
+          <div class="bank-label" data-ko>입금 계좌</div>
+          <div class="bank-label" data-en>Bank Account</div>
+          <div class="bank-info">
+            <div class="bank-name">iM뱅크 (구 대구은행)</div>
+            <div class="bank-num-row">
+              <span class="bank-num" id="bankNum1">010867396964 더박스</span>
+              <button class="copy-btn" onclick="copyBank('bankNum1', this)">
+                <span data-ko>복사</span><span data-en>Copy</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -831,17 +882,31 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
       <span data-en>TheBox<br><span class="sub-line">Spring Picnic · Yecheon</span></span>
     </h2>
     <p class="cta-sub">
-      <span data-ko>선착순 40명 한정 · 자리가 빠르게 마감됩니다<br>구글 폼을 통해 신청을 받습니다</span>
-      <span data-en>Limited to 40 · Spots fill up fast<br>Sign up via Google Form</span>
+      <span data-ko>선착순 40명 한정 · 자리가 빠르게 마감됩니다</span>
+      <span data-en>Limited to 40 · Spots fill up fast</span>
     </p>
-    <button class="cta-btn" onclick="handleApply()">
+    <button class="cta-btn" onclick="openApply()">
       <span data-ko>참가 신청하기</span>
       <span data-en>Apply Now</span>
     </button>
     <p class="cta-note">
-      <span data-ko>구글 폼 링크 오픈 예정 · 링크 공개 시 이 버튼으로 바로 연결됩니다<br>입금 확인 후 최종 신청 완료</span>
-      <span data-en>Google Form link coming soon · Button will redirect once live<br>Registration confirmed upon payment</span>
+      <span data-ko>신청서 작성 후 아래 계좌로 입금해 주세요 · 입금 확인 후 최종 신청 완료</span>
+      <span data-en>Fill in the form and transfer to the account below · Confirmed upon payment</span>
     </p>
+    <!-- CTA 입금계좌 -->
+    <div class="bank-box dark">
+      <div class="bank-label" data-ko>입금 계좌</div>
+      <div class="bank-label" data-en>Bank Account</div>
+      <div class="bank-info">
+        <div class="bank-name">iM뱅크 (구 대구은행)</div>
+        <div class="bank-num-row">
+          <span class="bank-num" id="bankNum2">010867396964 더박스</span>
+          <button class="copy-btn copy-btn-light" onclick="copyBank('bankNum2', this)">
+            <span data-ko>복사</span><span data-en>Copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -905,6 +970,110 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
 </div>
 
 <footer>
+
+<!-- APPLY MODAL -->
+<div class="modal-overlay" id="applyModal" onclick="closeApplyOutside(event)">
+  <div class="modal modal-wide">
+    <button class="modal-close" onclick="closeApply()">×</button>
+
+    <div class="modal-tag" data-ko>참가 신청</div>
+    <div class="modal-tag" data-en>Registration</div>
+    <h3 class="modal-title" data-ko>더박스 예천 투어<br><span style="font-size:16px;opacity:.6;">2026 봄소풍</span></h3>
+    <h3 class="modal-title" data-en>TheBox Yecheon Tour<br><span style="font-size:16px;opacity:.6;">Spring Picnic 2026</span></h3>
+
+    <!-- 보험 안내 -->
+
+    <div class="modal-divider"></div>
+
+    <!-- 기본 정보 -->
+    <div class="form-group">
+      <label class="form-label" data-ko>이름 <span class="form-hint">(Full name as stated on your passport)</span></label>
+      <label class="form-label" data-en>Full Name <span class="form-hint">(as stated on your passport)</span></label>
+      <input class="form-input" id="f-name" type="text" placeholder="홍길동 / Hong Gildong">
+    </div>
+    <div class="form-group">
+      <label class="form-label" data-ko>성 <span class="form-hint">(Last name)</span></label>
+      <label class="form-label" data-en>Last Name</label>
+      <input class="form-input" id="f-lastName" type="text" placeholder="홍 / Hong">
+    </div>
+    <div class="form-group">
+      <label class="form-label" data-ko>연락처</label>
+      <label class="form-label" data-en>Phone Number</label>
+      <input class="form-input" id="f-phone" type="tel" placeholder="010-0000-0000">
+    </div>
+    <div class="form-group">
+      <label class="form-label" data-ko>참여하고 있는 반 (요일)</label>
+      <label class="form-label" data-en>Class Day</label>
+      <input class="form-input" id="f-classDay" type="text" placeholder="월요일반 / Monday class">
+    </div>
+    <div class="form-group">
+      <label class="form-label" data-ko>점심 선택</label>
+      <label class="form-label" data-en>Lunch Selection</label>
+      <select class="form-select" id="f-lunch">
+        <option value="" disabled selected data-ko>메뉴를 선택해 주세요</option>
+        <option value="" disabled selected data-en>Please select a menu</option>
+        <option value="[비건] 장어 쌈밥 정식" data-ko>🌱 [비건] 장어 쌈밥 정식</option>
+        <option value="[Vegan] Eel Ssambap Set" data-en>🌱 [Vegan] Eel Ssambap Set</option>
+        <option value="[Non-비건] 두루치기" data-ko>🥩 [Non-비건] 두루치기</option>
+        <option value="[Non-Vegan] Duruchigi" data-en>🥩 [Non-Vegan] Duruchigi</option>
+        <option value="[Non-비건] 소불고기" data-ko>🥩 [Non-비건] 소불고기</option>
+        <option value="[Non-Vegan] Beef Bulgogi" data-en>🥩 [Non-Vegan] Beef Bulgogi</option>
+      </select>
+    </div>
+
+    <div class="modal-divider"></div>
+
+    <!-- 보험 정보 -->
+    <div class="form-section-title" data-ko>여행자보험 가입정보</div>
+    <div class="form-section-title" data-en>Travel Insurance Information</div>
+    <div class="apply-notice">
+      <span data-ko>※ 이번 데이트립은 보다 안전한 여행을 위해 여행자 보험이 포함된 패키지로 진행됩니다. 여행자 보험 가입을 위해 필수 정보 제출이 필요하며, 아래 내용을 작성해주세요! 제출하신 정보는 보험 가입 외 다른 용도로 사용되지 않습니다.</span>
+      <span data-en>※ This day trip includes travel insurance for your safety. The following information is required for insurance registration and will not be used for any other purpose.</span>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" data-ko>국적 (Nationality)</label>
+      <label class="form-label" data-en>Nationality</label>
+      <input class="form-input" id="f-nationality" type="text" placeholder="대한민국 / Korean / American ...">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" data-ko>주민등록번호 / ARC 번호 / 여권 번호</label>
+      <label class="form-label" data-en>Korean ID / ARC number / Passport number</label>
+      <div class="form-hint-box" data-ko>한국인 멤버: 주민등록번호 &nbsp;·&nbsp; International members: ARC number or passport number</div>
+      <div class="form-hint-box" data-en>Korean members: ID number &nbsp;·&nbsp; International members: ARC number or passport number</div>
+      <input class="form-input" id="f-idNumber" type="text" placeholder="000000-0000000 / ARC / Passport No.">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" data-ko>생년월일 (Date of Birth)</label>
+      <label class="form-label" data-en>Date of Birth</label>
+      <input class="form-input" id="f-birthDate" type="date">
+    </div>
+
+    <div class="modal-divider"></div>
+
+    <!-- 입금 계좌 -->
+    <div class="bank-box" style="margin-bottom:20px;">
+      <div class="bank-label" data-ko>입금 계좌</div>
+      <div class="bank-label" data-en>Bank Account</div>
+      <div class="bank-info">
+        <div class="bank-name">iM뱅크 (구 대구은행)</div>
+        <div class="bank-num-row">
+          <span class="bank-num" id="bankNum3">010867396964 더박스</span>
+          <button class="copy-btn" onclick="copyBank('bankNum3', this)">
+            <span data-ko>복사</span><span data-en>Copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="form-submit" onclick="submitApply()">
+      <span data-ko>신청서 제출하기</span>
+      <span data-en>Submit Application</span>
+    </button>
+  </div>
+</div>
   <div class="f-brand">The<span>Box</span></div>
   <div class="f-info">
     <span data-ko>2025. 04. 19 (일) · 더현대 대구 09:00 출발 · 문의는 공지된 연락처로</span>
@@ -955,7 +1124,104 @@ function closeMenu() {
 function closeMenuOutside(e) {
   if (e.target === document.getElementById('menuModal')) closeMenu();
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+function openApply() {
+  document.getElementById('applyModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeApply() {
+  document.getElementById('applyModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeApplyOutside(e) {
+  if (e.target === document.getElementById('applyModal')) closeApply();
+}
+
+function toggleIdField(val) {
+  document.getElementById('idFieldKorean').style.display = val === 'korean' ? 'block' : 'none';
+  document.getElementById('idFieldIntl').style.display   = val === 'intl'   ? 'block' : 'none';
+}
+
+function copyBank(id, btn) {
+  const txt = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(txt).then(() => {
+    const ko = document.body.classList.contains('ko');
+    btn.textContent = ko ? '✓ 복사됨' : '✓ Copied';
+    btn.style.background = 'var(--green)';
+    btn.style.color = 'white';
+    setTimeout(() => {
+      btn.innerHTML = ko ? '<span data-ko>복사</span><span data-en>Copy</span>' : '<span data-ko>복사</span><span data-en>Copy</span>';
+      btn.style.background = '';
+      btn.style.color = '';
+      // re-trigger lang
+      document.querySelectorAll('[data-ko],[data-en]').forEach(el => {
+        el.style.display = '';
+      });
+    }, 2000);
+  });
+}
+
+async function submitApply() {
+  const ko = document.body.classList.contains('ko');
+
+  // 필수 입력 체크
+  const required = ['f-name','f-lastName','f-phone','f-classDay','f-lunch','f-nationality','f-idNumber','f-birthDate'];
+  for (const id of required) {
+    const el = document.getElementById(id);
+    if (!el || !el.value.trim()) {
+      el && el.focus();
+      alert(ko ? '모든 항목을 입력해 주세요.' : 'Please fill in all required fields.');
+      return;
+    }
+  }
+
+  const btn = document.querySelector('.form-submit');
+  btn.disabled = true;
+  btn.textContent = ko ? '제출 중...' : 'Submitting...';
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2Z475arF1N9cTATrG49Dw86qAdakFgdd13kFFk-cxC5tKqGJi2FIKMnlrHeaaPqhLSA/exec';
+
+  const payload = {
+    name:        document.getElementById('f-name').value.trim(),
+    lastName:    document.getElementById('f-lastName').value.trim(),
+    phone:       document.getElementById('f-phone').value.trim(),
+    classDay:    document.getElementById('f-classDay').value.trim(),
+    lunch:       document.getElementById('f-lunch').value,
+    nationality: document.getElementById('f-nationality').value.trim(),
+    idNumber:    document.getElementById('f-idNumber').value.trim(),
+    birthDate:   document.getElementById('f-birthDate').value,
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    alert(ko
+      ? '✅ 신청이 완료되었습니다!\n입금 확인 후 최종 신청이 완료됩니다.\n\niM뱅크 010867396964 더박스'
+      : '✅ Application submitted!\nRegistration confirmed upon payment.\n\niM Bank: 010867396964 TheBox'
+    );
+
+    // 폼 초기화
+    required.forEach(id => { document.getElementById(id).value = ''; });
+    closeApply();
+
+  } catch (err) {
+    alert(ko ? '오류가 발생했습니다. 다시 시도해 주세요.' : 'Something went wrong. Please try again.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = ko
+      ? '<span data-ko>신청서 제출하기</span><span data-en>Submit Application</span>'
+      : '<span data-ko>신청서 제출하기</span><span data-en>Submit Application</span>';
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeMenu(); closeApply(); }
+});
 
 function handleApply() {
   const ko = document.body.classList.contains('ko');
