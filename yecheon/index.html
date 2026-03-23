@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>더박스 봄소풍 — 예천 2025</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 @font-face {
   font-family: 'Cafe24Ssurround';
@@ -25,12 +25,12 @@
 
   --display: 'Cafe24Ssurround','Noto Sans KR',sans-serif;
   --ko:      'Noto Sans KR',sans-serif;
-  --en:      'Plus Jakarta Sans',sans-serif;
+  --en:      'Inter', sans-serif;
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--ko);background:var(--bg);color:var(--ink);overflow-x:hidden;}
+body{font-family:var(--ko);background:var(--bg);color:var(--ink);overflow-x:hidden;word-break:keep-all;}
 
 /* LANG */
 [data-ko],[data-en]{display:none;}
@@ -65,7 +65,7 @@ nav{
 .hero{
   margin-top:58px;
   position:relative;
-  height: 62vh;
+  height: 48vh;
   min-height:380px;
   overflow:hidden;
   background:#c4d4c4;
@@ -120,9 +120,10 @@ nav{
 }
 /* EN일 때 긴 텍스트 대응 */
 body.en .hero-title{
-  font-size:clamp(40px,6.5vw,84px);
-  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:clamp(44px,7vw,88px);
+  font-family:'Inter', sans-serif;
   font-weight:800;
+  font-style:normal;
   letter-spacing:-0.03em;
 }
 .hero-title .sub-line{
@@ -413,8 +414,35 @@ footer{padding:26px 52px;border-top:1px solid var(--border);display:flex;align-i
 .menu-item-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.65;}
 .menu-note{margin-top:18px;font-size:12px;color:var(--muted);line-height:1.85;font-weight:300;padding:12px 14px;background:var(--off);border-radius:10px;}
 
-body.en .s-title{ font-size:clamp(20px,3vw,34px); font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; letter-spacing:-0.02em; }
-body.en .cta-title{ font-size:clamp(26px,4vw,48px); font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; letter-spacing:-0.02em; }
+/* EN 전체 폰트 오버라이드 */
+body.en .ep-name,
+body.en .sp-name,
+body.en .sp-no,
+body.en .ep-no,
+body.en .ib-val,
+body.en .nav-brand,
+body.en .f-brand,
+body.en .modal-title,
+body.en .form-section-title,
+body.en .price-num,
+body.en .cap-n,
+body.en .bank-num { font-family:'Inter',sans-serif; font-style:normal; }
+
+body.en .nav-sub,
+body.en .s-label,
+body.en .sp-en,
+body.en .ep-sub,
+body.en .ib-label,
+body.en .price-tagline,
+body.en .cap-lbl,
+body.en .incl-head,
+body.en .sr-name,
+body.en .sr-desc,
+body.en .hero-eyebrow,
+body.en .hero-kicker { font-family:'Inter',sans-serif; letter-spacing:0.06em; }
+
+body.en .s-title{ font-size:clamp(22px,3.2vw,38px); font-family:'Inter',sans-serif; font-weight:800; font-style:normal; letter-spacing:-0.02em; }
+body.en .cta-title{ font-size:clamp(30px,4.5vw,56px); font-family:'Inter',sans-serif; font-weight:800; font-style:normal; letter-spacing:-0.02em; }
 .bank-box{margin-top:20px;padding:16px 20px;background:var(--sage);border-radius:14px;border:1px solid rgba(42,106,69,.15);}
 .bank-box.dark{background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.15);margin-top:28px;border-radius:16px;padding:20px 24px;text-align:left;max-width:360px;margin-left:auto;margin-right:auto;}
 .bank-label{font-family:var(--en);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
@@ -447,22 +475,87 @@ body.en .cta-title{ font-size:clamp(26px,4vw,48px); font-family:'Plus Jakarta Sa
 .rev{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
 .rev.vis{opacity:1;transform:translateY(0);}
 
-/* RESPONSIVE */
+/* ════ MOBILE ════ */
 @media(max-width:820px){
+  /* NAV */
   nav{padding:0 18px;}
   .nav-sub{display:none;}
-  .hero-body{padding:28px 22px 32px;}
+
+  /* HERO */
+  .hero{height:52vh;min-height:320px;}
+  .hero-body{padding:24px 20px 28px;}
+  .hero-eyebrow{font-size:10px;margin-bottom:7px;}
+  .hero-title{font-size:clamp(36px,9vw,56px);margin-bottom:12px;}
+  body.en .hero-title{font-size:clamp(30px,7.5vw,48px);}
+  .hero-tags{gap:6px;}
+  .htag{font-size:11px;padding:5px 11px;}
+  .hero-right{display:none;}
+
+  /* INFO BAR */
   .info-bar{grid-template-columns:repeat(3,1fr);}
+  .ib{padding:16px 14px;}
   .ib:nth-child(4),.ib:nth-child(5){border-top:1px solid var(--border);}
-  .sec{padding:64px 20px;}
+  .ib-val{font-size:15px;}
+  .ib-label{font-size:8px;letter-spacing:.14em;}
+
+  /* SECTIONS */
+  .sec{padding:52px 18px;}
+  .s-label{font-size:9px;}
+  .s-title{margin-bottom:28px;}
+
+  /* SCHEDULE */
+  .sr{grid-template-columns:44px 1px 1fr;gap:0 14px;padding:16px 0;}
+  .sr-t{font-size:9px;}
+  .sr-name{font-size:14px;}
+  .sr-desc{font-size:12px;}
+  .menu-btn{font-size:11px;padding:5px 12px;}
+
+  /* SPOTS */
   .spots-grid{grid-template-columns:1fr;height:auto;}
-  .sp.big{grid-row:auto;min-height:300px;}
-  .sp:not(.big){min-height:220px;}
+  .sp.big{grid-row:auto;min-height:260px;}
+  .sp:not(.big){min-height:200px;}
+  .sp-name{font-size:20px;}
+  .sp.big .sp-name{font-size:22px;}
+  .sp-info{padding:20px 18px 16px;}
+
+  /* EXP */
   .exp-grid{grid-template-columns:1fr;}
-  .price-wrap,.cap-wrap{grid-template-columns:1fr;gap:36px;}
-  .cta{padding:72px 22px;}
-  footer{flex-direction:column;padding:22px;}
-  .f-info{text-align:left;}
+  .ep{min-height:200px;}
+  .ep-name{font-size:15px;}
+
+  /* PRICE */
+  .price-wrap{grid-template-columns:1fr;gap:28px;}
+  .price-num{font-size:clamp(42px,11vw,64px);}
+  .price-compare{gap:10px;}
+  .orig-num{font-size:18px;}
+  .thebox-num{font-size:22px;}
+  .incl-row{font-size:13px;}
+
+  /* CAPACITY */
+  .cap-wrap{grid-template-columns:1fr;gap:28px;}
+  .cap-n{font-size:clamp(36px,9vw,52px);}
+  .cdot{width:17px;height:17px;}
+
+  /* BANK */
+  .bank-num{font-size:16px;}
+  .bank-box{padding:14px 16px;}
+  .bank-box.dark{max-width:100%;}
+
+  /* CTA */
+  .cta{padding:60px 20px;}
+  .cta-title{letter-spacing:-.01em;}
+
+  /* FOOTER */
+  footer{flex-direction:column;padding:20px 18px;gap:8px;}
+  .f-info{text-align:left;font-size:11px;}
+
+  /* MODAL */
+  .modal{padding:28px 20px;border-radius:16px;}
+  .modal-wide{max-height:88svh;}
+  .modal-title{font-size:18px;}
+  .form-input,.form-select{font-size:16px;} /* iOS zoom 방지 */
+  .form-label{font-size:12px;}
+  .form-submit{font-size:15px;padding:14px;}
 }
 </style>
 </head>
@@ -755,10 +848,10 @@ body.en .cta-title{ font-size:clamp(26px,4vw,48px); font-family:'Plus Jakarta Sa
 <section class="sec off">
   <div class="inner">
     <div class="s-label rev" data-ko>참여비</div>
-    <div class="s-label rev" data-en>Pricing</div>
+    <div class="s-label rev" data-en>참여비</div>
     <h2 class="s-title rev">
       <span data-ko>참여비 안내</span>
-      <span data-en>Pricing</span>
+      <span data-en>참여비 안내</span>
     </h2>
     <div class="price-wrap rev">
       <div>
