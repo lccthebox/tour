@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>더박스 봄소풍 — 예천 2026</title>
+<meta name="description" content="TheBox 봄소풍 예천 투어 2026 · Spring 2026, TheBox Yecheon Tour · Apr 19, 2026">
+<meta property="og:title" content="더박스 봄소풍 — 예천 2026">
+<meta property="og:description" content="2026 봄날, 더박스와 함께 예천으로 떠나요! 회룡포 · 딸기 따기 · 봄꽃 축제 · Apr 19, 2026">
+<meta property="og:type" content="website">
+<meta property="og:image" content="yecheon.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="더박스 봄소풍 — 예천 2026">
+<meta name="twitter:description" content="2026 봄날, 더박스와 함께 예천으로 떠나요! Apr 19, 2026">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 @font-face {
@@ -1079,9 +1087,18 @@ body.en .cta-title{ font-size:clamp(30px,4.5vw,56px); font-family:'Inter',sans-s
       <input class="form-input" id="f-name" type="text" placeholder="홍길동 / Hong Gildong">
     </div>
     <div class="form-group">
-      <label class="form-label" data-ko>성 <span class="form-hint">(Last name)</span></label>
-      <label class="form-label" data-en>Last Name</label>
-      <input class="form-input" id="f-lastName" type="text" placeholder="홍 / Hong">
+      <label class="form-label" data-ko>성별 <span class="form-hint">(선택사항)</span></label>
+      <label class="form-label" data-en>Gender <span class="form-hint">(optional)</span></label>
+      <select class="form-select" id="f-gender">
+        <option value="" selected data-ko>선택 안 함</option>
+        <option value="" selected data-en>Prefer not to say</option>
+        <option value="여성" data-ko>여성 (Female)</option>
+        <option value="Female" data-en>Female</option>
+        <option value="남성" data-ko>남성 (Male)</option>
+        <option value="Male" data-en>Male</option>
+        <option value="기타" data-ko>기타 (Other)</option>
+        <option value="Other" data-en>Other</option>
+      </select>
     </div>
     <div class="form-group">
       <label class="form-label" data-ko>연락처</label>
@@ -1273,7 +1290,7 @@ async function submitApply() {
   const ko = document.body.classList.contains('ko');
 
   // 필수 입력 체크
-  const required = ['f-name','f-lastName','f-phone','f-classDay','f-lunch','f-nationality','f-idNumber','f-birthDate'];
+  const required = ['f-name','f-phone','f-classDay','f-lunch','f-nationality','f-idNumber','f-birthDate'];
   for (const id of required) {
     const el = document.getElementById(id);
     if (!el || !el.value.trim()) {
@@ -1289,7 +1306,7 @@ async function submitApply() {
 
   const payload = {
     name:        document.getElementById('f-name').value.trim(),
-    lastName:    document.getElementById('f-lastName').value.trim(),
+    gender:      document.getElementById('f-gender').value || '미선택',
     phone:       document.getElementById('f-phone').value.trim(),
     classDay:    document.getElementById('f-classDay').value.trim(),
     lunch:       document.getElementById('f-lunch').value,
